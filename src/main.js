@@ -122,6 +122,152 @@ function initParticleNetwork() {
   animate()
 }
 
+// ── 3D Globe ──────────────────────────────────────────────────────────────────
+function initGlobe() {
+  const canvas = document.getElementById('globe-canvas')
+  if (!canvas) return
+
+  const W = canvas.parentElement.clientWidth || 520
+  const H = canvas.parentElement.clientHeight || 520
+  canvas.width = W
+  canvas.height = H
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  renderer.setSize(W, H)
+
+  const scene = new THREE.Scene()
+  const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 1000)
+  camera.position.z = 2.8
+
+  const RADIUS = 1
+
+  // Dot sphere surface
+  const dotGeo = new THREE.BufferGeometry()
+  const DOT_COUNT = 2800
+  const dotPos = []
+  for (let i = 0; i < DOT_COUNT; i++) {
+    const phi = Math.acos(-1 + (2 * i) / DOT_COUNT)
+    const theta = Math.sqrt(DOT_COUNT * Math.PI) * phi
+    dotPos.push(
+      RADIUS * Math.sin(phi) * Math.cos(theta),
+      RADIUS * Math.sin(phi) * Math.sin(theta),
+      RADIUS * Math.cos(phi)
+    )
+  }
+  dotGeo.setAttribute('position', new THREE.Float32BufferAttribute(dotPos, 3))
+  const dotMat = new THREE.PointsMaterial({ color: 0x4cc2ff, size: 0.012, transparent: true, opacity: 0.75 })
+  const dotSphere = new THREE.Points(dotGeo, dotMat)
+  scene.add(dotSphere)
+
+  // Outer glow ring
+  const ringGeo = new THREE.RingGeometry(RADIUS + 0.02, RADIUS + 0.06, 128)
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0x4cc2ff, side: THREE.DoubleSide, transparent: true, opacity: 0.06 })
+  const ring = new THREE.Mesh(ringGeo, ringMat)
+  ring.rotation.x = Math.PI / 2
+  scene.add(ring)
+
+  // Atmosphere glow (large transparent sphere)
+  const atmGeo = new THREE.SphereGeometry(RADIUS + 0.08, 64, 64)
+  const atmMat = new THREE.MeshBasicMaterial({ color: 0x4cc2ff, transparent: true, opacity: 0.04, side: THREE.BackSide })
+  scene.add(new THREE.Mesh(atmGeo, atmMat))
+
+  // City nodes (lat/lon → xyz)
+  const cities = [
+    [43.65, -79.38],  // Toronto
+    [51.50, -0.12],   // London
+    [35.68, 139.69],  // Tokyo
+    [1.35, 103.82],   // Singapore
+    [37.77, -122.4],  // San Francisco
+    [-33.86, 151.2],  // Sydney
+    [48.85, 2.35],    // Paris
+    [19.07, 72.87],   // Mumbai
+  ]
+
+  function latLonToXYZ(lat, lon, r) {
+    const phi = (90 - lat) * (Math.PI / 180)
+    const theta = (lon + 180) * (Math.PI / 180)
+    return new THREE.Vector3(
+      -r * Math.sin(phi) * Math.cos(theta),
+       r * Math.cos(phi),
+       r * Math.sin(phi) * Math.sin(theta)
+    )
+  }
+
+  const nodeGeo = new THREE.SphereGeometry(0.022, 12, 12)
+  const nodeMat = new THREE.MeshBasicMaterial({ color: 0x7dd3fc })
+  const cityPositions = cities.map(([lat, lon]) => {
+    const pos = latLonToXYZ(lat, lon, RADIUS)
+    const node = new THREE.Mesh(nodeGeo, nodeMat.clone())
+    node.position.copy(pos)
+    dotSphere.add(node)
+    return pos
+  })
+
+  // Arc connections between cities
+  function createArc(p1, p2) {
+    const mid = p1.clone().add(p2).multiplyScalar(0.5).normalize().multiplyScalar(RADIUS * 1.35)
+    const points = []
+    const N = 48
+    for (let i = 0; i <= N; i++) {
+      const t = i / N
+      const pt = new THREE.QuadraticBezierCurve3(p1, mid, p2).getPoint(t)
+      points.push(pt)
+    }
+    const arcGeo = new THREE.BufferGeometry().setFromPoints(points)
+    const arcMat = new THREE.LineBasicMaterial({ color: 0x4cc2ff, transparent: true, opacity: 0.35 })
+    return new THREE.Line(arcGeo, arcMat)
+  }
+
+  const connections = [[0,1],[1,4],[0,4],[1,2],[2,3],[3,7],[4,6],[0,6],[2,5],[5,3]]
+  connections.forEach(([a, b]) => scene.add(createArc(cityPositions[a], cityPositions[b])))
+
+  // Pulse rings on cities
+  const pulseRings = cityPositions.slice(0, 4).map(pos => {
+    const geo = new THREE.RingGeometry(0.03, 0.05, 24)
+    const mat = new THREE.MeshBasicMaterial({ color: 0x4cc2ff, side: THREE.DoubleSide, transparent: true, opacity: 0.8 })
+    const mesh = new THREE.Mesh(geo, mat)
+    mesh.position.copy(pos)
+    mesh.lookAt(0, 0, 0)
+    dotSphere.add(mesh)
+    return { mesh, mat, phase: Math.random() * Math.PI * 2 }
+  })
+
+  // Orbit controls (manual drag)
+  let isDragging = false, prevX = 0, prevY = 0
+  let rotY = 0, rotX = 0.2
+  let autoRotate = true
+
+  canvas.addEventListener('mousedown', e => { isDragging = true; autoRotate = false; prevX = e.clientX; prevY = e.clientY })
+  window.addEventListener('mouseup', () => { isDragging = false; setTimeout(() => autoRotate = true, 2000) })
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return
+    rotY += (e.clientX - prevX) * 0.005
+    rotX += (e.clientY - prevY) * 0.003
+    rotX = Math.max(-0.8, Math.min(0.8, rotX))
+    prevX = e.clientX; prevY = e.clientY
+  })
+
+  let t = 0
+  function animate() {
+    requestAnimationFrame(animate)
+    t += 0.01
+    if (autoRotate) rotY += 0.002
+    dotSphere.rotation.y = rotY
+    dotSphere.rotation.x = rotX
+
+    // Pulse rings animate
+    pulseRings.forEach(({ mesh, mat, phase }, i) => {
+      const s = 1 + 0.5 * Math.abs(Math.sin(t * 1.2 + phase))
+      mesh.scale.setScalar(s)
+      mat.opacity = 0.7 * (1 - Math.abs(Math.sin(t * 1.2 + phase)) * 0.6)
+    })
+
+    renderer.render(scene, camera)
+  }
+  animate()
+}
+
 // ── Nav toggle ────────────────────────────────────────────────────────────────
 function initNav() {
   const toggle = document.querySelector('.nav-toggle')
@@ -227,7 +373,7 @@ function initContactForm() {
 
       if (res.ok) {
         form.style.display = 'none'
-        if (successEl) successEl.style.display = 'flex'
+        if (successEl) { successEl.removeAttribute('hidden'); successEl.style.display = 'flex' }
       } else {
         // Show field-level errors if any
         if (data.errors) {
@@ -254,6 +400,7 @@ function initContactForm() {
 // ── Boot ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initParticleNetwork()
+  initGlobe()
   initNav()
   initReveal()
   initCounters()
