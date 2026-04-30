@@ -142,35 +142,63 @@ function initGlobe() {
 
   const RADIUS = 1
 
-  // Dot sphere surface
-  const dotGeo = new THREE.BufferGeometry()
-  const DOT_COUNT = 2800
-  const dotPos = []
-  for (let i = 0; i < DOT_COUNT; i++) {
-    const phi = Math.acos(-1 + (2 * i) / DOT_COUNT)
-    const theta = Math.sqrt(DOT_COUNT * Math.PI) * phi
-    dotPos.push(
-      RADIUS * Math.sin(phi) * Math.cos(theta),
-      RADIUS * Math.sin(phi) * Math.sin(theta),
-      RADIUS * Math.cos(phi)
-    )
-  }
-  dotGeo.setAttribute('position', new THREE.Float32BufferAttribute(dotPos, 3))
-  const dotMat = new THREE.PointsMaterial({ color: 0x4cc2ff, size: 0.012, transparent: true, opacity: 0.75 })
-  const dotSphere = new THREE.Points(dotGeo, dotMat)
-  scene.add(dotSphere)
+  // Earth texture from public CDN
+  const loader = new THREE.TextureLoader()
+  const globeGroup = new THREE.Group()
+  scene.add(globeGroup)
+
+  // Dark earth base sphere
+  const earthGeo = new THREE.SphereGeometry(RADIUS, 64, 64)
+  loader.load(
+    'https://unpkg.com/three-globe/example/img/earth-dark.jpg',
+    (tex) => {
+      const earthMat = new THREE.MeshPhongMaterial({
+        map: tex,
+        specular: new THREE.Color(0x4cc2ff),
+        specularMap: tex,
+        shininess: 8,
+        emissive: new THREE.Color(0x112244),
+        emissiveIntensity: 0.15,
+      })
+      globeGroup.add(new THREE.Mesh(earthGeo, earthMat))
+    },
+    undefined,
+    () => {
+      // fallback: dot sphere if texture fails
+      const mat = new THREE.MeshBasicMaterial({ color: 0x0a1628, wireframe: false })
+      globeGroup.add(new THREE.Mesh(earthGeo, mat))
+    }
+  )
+
+  // Lighting
+  const ambient = new THREE.AmbientLight(0x223355, 1.2)
+  scene.add(ambient)
+  const dirLight = new THREE.DirectionalLight(0x4cc2ff, 1.8)
+  dirLight.position.set(5, 3, 5)
+  scene.add(dirLight)
+  const rimLight = new THREE.DirectionalLight(0x818cf8, 0.6)
+  rimLight.position.set(-5, -2, -3)
+  scene.add(rimLight)
+
+  // Atmosphere glow
+  const atmGeo = new THREE.SphereGeometry(RADIUS + 0.06, 64, 64)
+  const atmMat = new THREE.MeshPhongMaterial({
+    color: 0x4cc2ff,
+    transparent: true,
+    opacity: 0.06,
+    side: THREE.BackSide,
+  })
+  globeGroup.add(new THREE.Mesh(atmGeo, atmMat))
 
   // Outer glow ring
-  const ringGeo = new THREE.RingGeometry(RADIUS + 0.02, RADIUS + 0.06, 128)
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0x4cc2ff, side: THREE.DoubleSide, transparent: true, opacity: 0.06 })
+  const ringGeo = new THREE.RingGeometry(RADIUS + 0.02, RADIUS + 0.055, 128)
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0x4cc2ff, side: THREE.DoubleSide, transparent: true, opacity: 0.08 })
   const ring = new THREE.Mesh(ringGeo, ringMat)
   ring.rotation.x = Math.PI / 2
-  scene.add(ring)
+  globeGroup.add(ring)
 
-  // Atmosphere glow (large transparent sphere)
-  const atmGeo = new THREE.SphereGeometry(RADIUS + 0.08, 64, 64)
-  const atmMat = new THREE.MeshBasicMaterial({ color: 0x4cc2ff, transparent: true, opacity: 0.04, side: THREE.BackSide })
-  scene.add(new THREE.Mesh(atmGeo, atmMat))
+  // Use globeGroup as the rotating object (replaces dotSphere)
+  const dotSphere = globeGroup
 
   // City nodes (lat/lon → xyz)
   const cities = [
