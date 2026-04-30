@@ -463,6 +463,91 @@ body::after {
   line-height: 1.75;
 }
 
+/* ── Capabilities grid ───────────────────────────────────────────────────── */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.cap-card {
+  padding: 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  cursor: default;
+}
+
+.cap-card:hover {
+  border-color: rgba(76,194,255,0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+.cap-card-top {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.cap-icon {
+  width: 46px; height: 46px;
+  min-width: 46px;
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--cap-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cap-color) 25%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cap-color);
+}
+
+.cap-icon svg { width: 20px; height: 20px; }
+
+.cap-card-top h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.cap-outcome {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.cap-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.cap-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cap-tool {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+  color: var(--c);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .cap-grid { grid-template-columns: 1fr; }
+}
+
 /* ── Services grid ───────────────────────────────────────────────────────── */
 .services-grid {
   display: grid;
