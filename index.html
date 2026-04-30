@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Nova Digital Inc — Expert DevOps, AI/ML, Cloud Engineering, and Web Development services for modern businesses." />
+  <title>AI Nova Digital Inc | DevOps · AI · Cloud · Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+
+  <!-- Three.js canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── Nav ──────────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <nav class="nav">
+      <div class="logo">AI Nova Digital</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#stack">Tech Stack</a>
+        <a href="#about">About</a>
+        <a href="#industries">Industries</a>
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ─────────────────────────────────────────────────────── -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">AI Nova Digital Inc</p>
+        <h1>Engineering the<br/>Future of IT</h1>
+        <div class="typed-wrapper">
+          <span id="typed-text"></span><span class="cursor" aria-hidden="true"></span>
+        </div>
+        <p class="hero-sub">
+          Boutique IT consultancy delivering senior-level expertise in DevOps, AI/ML, Cloud Architecture, and custom Web Development — built for startups, scale-ups, and enterprises.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">Start a Project</a>
+          <a class="btn ghost" href="#services">View Services</a>
+        </div>
+        <div class="trust-bar">
+          <div class="trust-item">
+            <span class="num" data-count="8" data-suffix="+">0+</span>
+            <span class="label">Years Experience</span>
+          </div>
+          <div class="trust-item">
+            <span class="num" data-count="15" data-suffix="+">0+</span>
+            <span class="label">Technologies</span>
+          </div>
+          <div class="trust-item">
+            <span class="num" data-count="3" data-suffix=" continents">0</span>
+            <span class="label">Global Reach</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Main glass panel -->
+        <div class="float-card main">
+          <div class="card-label">System Status</div>
+          <div class="metric-row">
+            <span>CI/CD Pipeline</span>
+            <span class="badge green"><span class="status-dot green"></span>Live</span>
+          </div>
+          <div class="metric-row">
+            <span>K8s Cluster</span>
+            <span class="val">99.98%</span>
+          </div>
+          <div class="metric-row">
+            <span>AI Model</span>
+            <span class="badge blue"><span class="status-dot blue"></span>Serving</span>
+          </div>
+          <div class="metric-row">
+            <span>Infra Cost</span>
+            <span class="val" style="color:#4ade80;">−34%</span>
+          </div>
+        </div>
+
+        <!-- Side card 1 -->
+        <div class="float-card side-1">
+          <div class="card-label">AI Pipeline</div>
+          <div class="metric-row">
+            <span>LLM Latency</span>
+            <span class="val">180ms</span>
+          </div>
+          <div class="metric-row">
+            <span>Accuracy</span>
+            <span class="val">96.4%</span>
+          </div>
+        </div>
+
+        <!-- Side card 2 -->
+        <div class="float-card side-2">
+          <div class="card-label">Delivery</div>
+          <div class="metric-row">
+            <span>Deploy Freq</span>
+            <span class="badge gold">Daily</span>
+          </div>
+          <div class="metric-row">
+            <span>MTTR</span>
+            <span class="val">&lt; 12 min</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Services ──────────────────────────────────────────────────── -->
+    <section class="section" id="services">
+      <div class="section-header reveal">
+        <p class="eyebrow">Services</p>
+        <h2>Senior-level expertise, delivered</h2>
+        <p>End-to-end capabilities across infrastructure, intelligence, and interfaces — tailored to your business goals.</p>
+      </div>
+      <div class="services-grid">
+
+        <article class="service-card reveal delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3>DevOps & Platform Engineering</h3>
+          <p>CI/CD pipelines, Kubernetes orchestration, infrastructure automation, and SRE practices that ship faster with confidence.</p>
+          <div class="service-tags">
+            <span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">GitHub Actions</span><span class="tag">ArgoCD</span>
+          </div>
+        </article>
+
+        <article class="service-card reveal delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>Custom LLM integrations, RAG pipelines, predictive analytics, and AI automation workflows built for production scale.</p>
+          <div class="service-tags">
+            <span class="tag">LangChain</span><span class="tag">OpenAI</span><span class="tag">PyTorch</span><span class="tag">MLflow</span>
+          </div>
+        </article>
+
+        <article class="service-card reveal delay-3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3>Cloud Architecture</h3>
+          <p>AWS, GCP, and Azure architecture design, cost optimization, cloud-native migrations, and multi-cloud strategy.</p>
+          <div class="service-tags">
+            <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Azure</span><span class="tag">FinOps</span>
+          </div>
+        </article>
+
+        <article class="service-card reveal delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <h3>Web Design & Development</h3>
+          <p>High-performance, visually striking websites and web apps — from landing pages to full SaaS platforms. 3D, animated, conversion-optimized.</p>
+          <div class="service-tags">
+            <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Three.js</span><span class="tag">Tailwind</span>
+          </div>
+        </article>
+
+        <article class="service-card reveal delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3>MLOps / LLMOps</h3>
+          <p>Production model lifecycle management — experiment tracking, model registry, serving infrastructure, monitoring, and drift detection.</p>
+          <div class="service-tags">
+            <span class="tag">MLflow</span><span class="tag">Kubeflow</span><span class="tag">Seldon</span><span class="tag">Prometheus</span>
+          </div>
+        </article>
+
+        <article class="service-card reveal delay-3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3>IT Consulting & Strategy</h3>
+          <p>Target-state architecture, platform modernization roadmaps, technical due diligence, and engineering team augmentation.</p>
+          <div class="service-tags">
+            <span class="tag">Architecture</span><span class="tag">Roadmapping</span><span class="tag">Due Diligence</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Tech Stack ─────────────────────────────────────────────────── -->
+    <section class="section stack-section" id="stack">
+      <div class="section-header reveal">
+        <p class="eyebrow">Tech Stack</p>
+        <h2>Tools we master</h2>
+      </div>
+      <div class="stack-grid">
+
+        <!-- Cloud -->
+        <div class="stack-item reveal delay-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <span>AWS</span>
+        </div>
+        <div class="stack-item reveal delay-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <span>GCP</span>
+        </div>
+        <div class="stack-item reveal delay-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0089D6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <span>Azure</span>
+        </div>
+
+        <!-- DevOps -->
+        <div class="stack-item reveal delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#326CE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Kubernetes</span>
+        </div>
+        <div class="stack-item reveal delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2496ED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 12h10M12 7v10"/></svg>
+          <span>Docker</span>
+        </div>
+        <div class="stack-item reveal delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7B42BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M4 20L20 4"/></svg>
+          <span>Terraform</span>
+        </div>
+
+        <!-- AI/ML -->
+        <div class="stack-item reveal delay-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#EE4C2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+          <span>PyTorch</span>
+        </div>
+        <div class="stack-item reveal delay-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF6F00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>TensorFlow</span>
+        </div>
+        <div class="stack-item reveal delay-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#74aa9c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 4v8l5 3"/></svg>
+          <span>OpenAI</span>
+        </div>
+
+        <!-- Web -->
+        <div class="stack-item reveal delay-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120)"/></svg>
+          <span>React</span>
+        </div>
+        <div class="stack-item reveal delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 19h20L12 2z"/></svg>
+          <span>Next.js</span>
+        </div>
+        <div class="stack-item reveal delay-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3ECF8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+          <span>Supabase</span>
+        </div>
+
+        <!-- Monitoring -->
+        <div class="stack-item reveal delay-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E6522C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>Prometheus</span>
+        </div>
+        <div class="stack-item reveal delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F46800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Grafana</span>
+        </div>
+        <div class="stack-item reveal delay-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3178C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <span>Python</span>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── About ──────────────────────────────────────────────────────── -->
+    <section class="section" id="about">
+      <div class="section-header reveal">
+        <p class="eyebrow">About</p>
+        <h2>Boutique delivery, senior expertise</h2>
+        <p>AI Nova Digital Inc is a specialized IT consultancy operating out of Canada, bringing senior engineering depth to every engagement. We work with a focused client roster so every project gets full attention — not junior bench staff.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card reveal delay-1">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3>Senior Expertise</h3>
+          <p>Every engagement led by senior engineers with 8+ years of hands-on delivery — no juniors billed at senior rates.</p>
+        </div>
+        <div class="about-card reveal delay-2">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Security-First</h3>
+          <p>Compliance-aware delivery with threat-informed design, SOC 2 awareness, and security embedded at every layer.</p>
+        </div>
+        <div class="about-card reveal delay-3">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Results-Driven</h3>
+          <p>Every engagement measured by business outcomes — faster deploys, lower costs, better reliability, real ROI.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Industries ─────────────────────────────────────────────────── -->
+    <section class="section" id="industries">
+      <div class="section-header reveal">
+        <p class="eyebrow">Industries</p>
+        <h2>Experience where it matters</h2>
+      </div>
+      <div class="pill-grid">
+        <span class="pill reveal delay-1">FinTech</span>
+        <span class="pill reveal delay-1">Healthcare</span>
+        <span class="pill reveal delay-2">SaaS</span>
+        <span class="pill reveal delay-2">E-commerce</span>
+        <span class="pill reveal delay-3">Enterprise</span>
+        <span class="pill reveal delay-3">Startups</span>
+        <span class="pill reveal delay-1">AI / ML Platforms</span>
+        <span class="pill reveal delay-2">Government</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Why ────────────────────────────────────────────────────────── -->
+    <section class="section" id="why">
+      <div class="section-header reveal">
+        <p class="eyebrow">Why Choose Us</p>
+        <h2>Precision delivery, business-first</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal delay-1">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Fast time-to-value</h3>
+          <p>Structured onboarding and clear milestones. First deliverable within week one.</p>
+        </div>
+        <div class="why-card reveal delay-2">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Dedicated team</h3>
+          <p>Direct access to senior engineers — no account managers, no ticket queues.</p>
+        </div>
+        <div class="why-card reveal delay-3">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Flexible engagement</h3>
+          <p>Project-based, retainer, or staff augmentation — structured to your budget and timeline.</p>
+        </div>
+        <div class="why-card reveal delay-4">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>Measurable outcomes</h3>
+          <p>We define success metrics upfront and report against them — not just completion, but impact.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Contact ─────────────────────────────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="section-header reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Ready to build something great?</h2>
+        <p>Tell us about your project and we'll respond within 1–2 business days with a tailored engagement plan.</p>
+      </div>
+      <div class="contact-grid">
+        <div data-fs-success style="display:none" class="form-success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
+          <p>Message sent! We'll respond within 1–2 business days.</p>
+        </div>
+        <div data-fs-error style="display:none" class="form-error-global"></div>
+
+        <form id="contact-form" class="contact-form reveal">
+          <label>
+            Full Name
+            <input type="text" name="name" placeholder="Your name" data-fs-field required />
+            <span data-fs-error="name" class="field-error"></span>
+          </label>
+          <label>
+            Work Email
+            <input type="email" name="email" placeholder="you@company.com" data-fs-field required />
+            <span data-fs-error="email" class="field-error"></span>
+          </label>
+          <label>
+            Service Needed
+            <select name="service" data-fs-field>
+              <option value="">Select a service...</option>
+              <option>DevOps & Platform Engineering</option>
+              <option>AI & Machine Learning</option>
+              <option>Cloud Architecture</option>
+              <option>Web Design & Development</option>
+              <option>MLOps / LLMOps</option>
+              <option>IT Consulting & Strategy</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Project Summary
+            <textarea name="message" placeholder="Describe your goals, timeline, and any constraints..." data-fs-field required></textarea>
+            <span data-fs-error="message" class="field-error"></span>
+          </label>
+          <button class="btn primary" type="submit" data-fs-submit-btn>Send Request</button>
+        </form>
+
+        <div class="contact-details reveal delay-2">
+          <div class="detail-card">
+            <h3>Email</h3>
+            <p>info@ainovadigital.ca</p>
+          </div>
+          <div class="detail-card">
+            <h3>Location</h3>
+            <p>Based in Canada — serving clients globally</p>
+          </div>
+          <div class="detail-card">
+            <h3>Response Time</h3>
+            <p>Within 1–2 business days</p>
+          </div>
+          <div class="detail-card">
+            <h3>Engagement Models</h3>
+            <p>Project-based · Retainer · Staff Augmentation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 AI Nova Digital Inc. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:info@ainovadigital.ca">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
