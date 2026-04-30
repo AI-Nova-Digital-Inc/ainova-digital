@@ -816,7 +816,11 @@ body::after {
 }
 
 .form-success {
-  display: flex !important;
+  display: none;
+}
+
+.form-success.visible {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;

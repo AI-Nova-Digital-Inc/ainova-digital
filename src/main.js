@@ -401,7 +401,7 @@ function initContactForm() {
 
       if (res.ok) {
         form.style.display = 'none'
-        if (successEl) { successEl.removeAttribute('hidden'); successEl.style.display = 'flex' }
+        if (successEl) { successEl.removeAttribute('hidden'); successEl.classList.add('visible') }
       } else {
         // Show field-level errors if any
         if (data.errors) {
