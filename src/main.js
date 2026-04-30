@@ -232,23 +232,6 @@ function initGlobe() {
     return pos
   })
 
-  // Arc connections between cities
-  function createArc(p1, p2) {
-    const mid = p1.clone().add(p2).multiplyScalar(0.5).normalize().multiplyScalar(RADIUS * 1.35)
-    const points = []
-    const N = 48
-    for (let i = 0; i <= N; i++) {
-      const t = i / N
-      const pt = new THREE.QuadraticBezierCurve3(p1, mid, p2).getPoint(t)
-      points.push(pt)
-    }
-    const arcGeo = new THREE.BufferGeometry().setFromPoints(points)
-    const arcMat = new THREE.LineBasicMaterial({ color: 0x4cc2ff, transparent: true, opacity: 0.35 })
-    return new THREE.Line(arcGeo, arcMat)
-  }
-
-  const connections = [[0,1],[1,4],[0,4],[1,2],[2,3],[3,7],[4,6],[0,6],[2,5],[5,3]]
-  connections.forEach(([a, b]) => scene.add(createArc(cityPositions[a], cityPositions[b])))
 
   // Pulse rings on cities
   const pulseRings = cityPositions.slice(0, 4).map(pos => {
