@@ -40,10 +40,10 @@ function initParticleNetwork() {
   particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
   const particleMat = new THREE.PointsMaterial({
-    color: 0x0ea5e9,
-    size: 0.7,
+    color: 0x1e40af,
+    size: 0.9,
     transparent: true,
-    opacity: 0.5,
+    opacity: 0.7,
     sizeAttenuation: true
   })
 
@@ -56,7 +56,7 @@ function initParticleNetwork() {
   lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3))
   const lineMat = new THREE.LineSegments(
     lineGeo,
-    new THREE.LineBasicMaterial({ color: 0x0ea5e9, transparent: true, opacity: 0.1 })
+    new THREE.LineBasicMaterial({ color: 0x1e40af, transparent: true, opacity: 0.18 })
   )
   scene.add(lineMat)
 
