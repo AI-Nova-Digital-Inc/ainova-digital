@@ -1,5 +1,10 @@
 node_modules/
 .claude/
+.agents/
+_local_backup/
+_deploy_extract/
+ainova-source/
+*.tar.gz
 dist/
 *.log
 .DS_Store
