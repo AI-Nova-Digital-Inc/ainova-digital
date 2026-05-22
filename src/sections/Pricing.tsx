@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Info, ShieldCheck, Sparkles, X } from "lucide-react";
 
 const plans = [
   {
     name: "Starter Website",
     oldPrice: "$299",
     price: "$249",
+    monthlyPrice: "$49/mo",
     priceNote: "starting from",
     badge: null,
     description: "Perfect for solo contractors who need a professional online presence fast.",
@@ -27,6 +29,7 @@ const plans = [
     name: "Business Website",
     oldPrice: "$499",
     price: "$349",
+    monthlyPrice: "$69/mo",
     priceNote: "starting from",
     badge: "Most Requested",
     description: "Everything a growing local business needs to dominate their market.",
@@ -49,6 +52,7 @@ const plans = [
     name: "Premium Website / Web App",
     oldPrice: "$699",
     price: "$499",
+    monthlyPrice: "$99/mo",
     priceNote: "starting from",
     badge: null,
     description: "Advanced digital solutions designed for businesses that need premium functionality, scalability, and modern user experiences.",
@@ -69,7 +73,23 @@ const plans = [
   },
 ];
 
+const carePlanFeatures = [
+  "Site updates (text, photos, hours, pricing)",
+  "Security & plugin updates",
+  "Hosting maintenance & uptime monitoring",
+  "Contact form monitoring",
+  "Fast support if the website goes down",
+  "Small content updates (1–2 changes/month)",
+  "Basic performance monitoring",
+  "SSL/security monitoring",
+  "Monthly backup protection",
+  "Spam protection & reliability checks",
+  "Priority response for urgent website issues",
+];
+
 export default function Pricing() {
+  const [activePlan, setActivePlan] = useState<(typeof plans)[number] | null>(null);
+
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -105,7 +125,10 @@ export default function Pricing() {
 
         {/* Cards */}
         <div className="grid lg:grid-cols-3 gap-6 items-start">
-          {plans.map(({ name, oldPrice, price, priceNote, badge, description, features, cta, ctaStyle, highlighted, glow }, i) => (
+          {plans.map((plan, i) => {
+            const { name, oldPrice, price, monthlyPrice, priceNote, badge, description, features, cta, ctaStyle, highlighted, glow } = plan;
+
+            return (
             <motion.div
               key={name}
               initial={{ opacity: 0, y: 40 }}
@@ -146,20 +169,38 @@ export default function Pricing() {
                   <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {name}
                   </h3>
-                  <div className="flex items-baseline gap-2 mb-3">
-                    <span className="text-xs text-gray-500">{priceNote}</span>
-                    <span
-                      className="text-2xl font-bold text-gray-500 line-through decoration-red-500 decoration-2"
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      {oldPrice}
-                    </span>
-                    <span
-                      className="text-4xl font-bold gradient-text"
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      {price}
-                    </span>
+                  <div className="mb-3">
+                    <div className="flex flex-wrap items-end gap-2">
+                      <span className="text-xs text-gray-500 pb-1.5">{priceNote}</span>
+                      <span
+                        className="text-2xl font-bold text-gray-500 line-through decoration-red-500 decoration-2 pb-0.5"
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {oldPrice}
+                      </span>
+                      <span
+                        className="text-4xl font-bold gradient-text"
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {price}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setActivePlan(plan)}
+                        onMouseEnter={() => window.matchMedia("(hover: hover)").matches && setActivePlan(plan)}
+                        className="group ml-0 sm:ml-1 inline-flex items-center gap-1.5 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-[11px] font-semibold text-cyan-200 shadow-[0_0_18px_rgba(34,211,238,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:text-white hover:shadow-[0_0_26px_rgba(34,211,238,0.25)]"
+                        aria-label={`View monthly care details for ${name}`}
+                      >
+                        <Info className="h-3.5 w-3.5" />
+                        <span>{monthlyPrice}</span>
+                        <span className="hidden xl:inline text-cyan-300/70 group-hover:text-cyan-100">Monthly Care</span>
+                      </button>
+                    </div>
+                    {highlighted && (
+                      <div className="mt-2 inline-flex rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                        Most businesses choose this
+                      </div>
+                    )}
                   </div>
                   <p className="text-gray-400 text-sm">{description}</p>
                 </div>
@@ -188,8 +229,81 @@ export default function Pricing() {
                 </button>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
+
+        {activePlan && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+            onClick={() => setActivePlan(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-slate-950/70 backdrop-blur-xl"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 22, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="care-plan-title"
+              className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-cyan-300/20 bg-slate-950/85 p-6 shadow-[0_0_90px_rgba(59,130,246,0.28)] sm:p-8"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
+              <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-cyan-400/20 blur-3xl" />
+              <div className="absolute -bottom-24 -left-20 h-56 w-56 rounded-full bg-blue-600/20 blur-3xl" />
+
+              <button
+                type="button"
+                onClick={() => setActivePlan(null)}
+                className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:border-cyan-300/40 hover:text-white"
+                aria-label="Close monthly care details"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              <div className="relative">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-xs font-semibold text-cyan-200">
+                  <ShieldCheck className="h-4 w-4" />
+                  {activePlan.name} · {activePlan.monthlyPrice}
+                </div>
+
+                <h3 id="care-plan-title" className="text-3xl font-bold text-white sm:text-4xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  Monthly Website Care Plan
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-gray-400">
+                  A premium maintenance layer for businesses that want their website protected, monitored, and kept current after launch.
+                </p>
+
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  {carePlanFeatures.map((feature) => (
+                    <div
+                      key={feature}
+                      className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.04] p-3.5 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
+                    >
+                      <div className="mt-0.5 grid h-5 w-5 flex-shrink-0 place-items-center rounded-full bg-emerald-400/15">
+                        <Check className="h-3 w-3 text-emerald-300" strokeWidth={3} />
+                      </div>
+                      <span className="text-sm leading-relaxed text-gray-200">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-7 rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4">
+                  <p className="text-sm leading-relaxed text-blue-100">
+                    We handle the technical maintenance so business owners can stay focused on running their business.
+                  </p>
+                  <p className="mt-2 text-xs font-medium text-cyan-300">Cancel anytime. No long-term maintenance contract required.</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
 
         {/* Bottom note */}
         <motion.p
