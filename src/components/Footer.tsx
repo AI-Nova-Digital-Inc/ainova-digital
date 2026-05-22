@@ -112,8 +112,8 @@ export default function Footer() {
               <a href="mailto:info@ainovadigital.ca" className="block text-gray-500 hover:text-blue-300 text-sm transition-colors">
                 info@ainovadigital.ca
               </a>
-              <a href="tel:+12044301945" className="block text-gray-500 hover:text-blue-300 text-sm transition-colors">
-                204-430-1945
+              <a href="tel:+14319963005" className="block text-gray-500 hover:text-blue-300 text-sm transition-colors">
+                431-996-3005
               </a>
               <div className="text-gray-600 text-sm">Mon-Fri, 9am-6pm EST</div>
             </div>

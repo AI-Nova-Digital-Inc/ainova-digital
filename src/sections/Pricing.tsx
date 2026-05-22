@@ -4,7 +4,8 @@ import { Check, Sparkles } from "lucide-react";
 const plans = [
   {
     name: "Starter Website",
-    price: "$299",
+    oldPrice: "$299",
+    price: "$249",
     priceNote: "starting from",
     badge: null,
     description: "Perfect for solo contractors who need a professional online presence fast.",
@@ -24,7 +25,8 @@ const plans = [
   },
   {
     name: "Business Website",
-    price: "$499",
+    oldPrice: "$499",
+    price: "$349",
     priceNote: "starting from",
     badge: "Most Requested",
     description: "Everything a growing local business needs to dominate their market.",
@@ -45,7 +47,8 @@ const plans = [
   },
   {
     name: "Premium Website / Web App",
-    price: "$699",
+    oldPrice: "$699",
+    price: "$499",
     priceNote: "starting from",
     badge: null,
     description: "Advanced digital solutions designed for businesses that need premium functionality, scalability, and modern user experiences.",
@@ -102,7 +105,7 @@ export default function Pricing() {
 
         {/* Cards */}
         <div className="grid lg:grid-cols-3 gap-6 items-start">
-          {plans.map(({ name, price, priceNote, badge, description, features, cta, ctaStyle, highlighted, glow }, i) => (
+          {plans.map(({ name, oldPrice, price, priceNote, badge, description, features, cta, ctaStyle, highlighted, glow }, i) => (
             <motion.div
               key={name}
               initial={{ opacity: 0, y: 40 }}
@@ -143,8 +146,14 @@ export default function Pricing() {
                   <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {name}
                   </h3>
-                  <div className="flex items-baseline gap-1 mb-3">
+                  <div className="flex items-baseline gap-2 mb-3">
                     <span className="text-xs text-gray-500">{priceNote}</span>
+                    <span
+                      className="text-2xl font-bold text-gray-500 line-through decoration-red-500 decoration-2"
+                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    >
+                      {oldPrice}
+                    </span>
                     <span
                       className="text-4xl font-bold gradient-text"
                       style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -190,7 +199,7 @@ export default function Pricing() {
           transition={{ delay: 0.5 }}
           className="text-center text-gray-500 text-sm mt-10"
         >
-          All packages include a free consultation. No contracts, no hidden fees.{" "}
+          All packages include a free consultation. Optional monthly maintenance and support plans are available, but not required. No contracts, no hidden fees.{" "}
           <button onClick={scrollToContact} className="text-blue-400 hover:text-blue-300 underline transition-colors">
             Get in touch
           </button>{" "}

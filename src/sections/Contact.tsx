@@ -90,7 +90,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="tel:+12044301945"
+                  href="tel:+14319963005"
                   className="flex items-center gap-4 group"
                   data-testid="link-phone"
                 >
@@ -99,7 +99,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-gray-500 mb-0.5">Call Us</div>
-                    <div className="text-gray-200 text-sm font-medium group-hover:text-cyan-300 transition-colors">204-430-1945</div>
+                    <div className="text-gray-200 text-sm font-medium group-hover:text-cyan-300 transition-colors">431-996-3005</div>
                   </div>
                 </a>
               </div>

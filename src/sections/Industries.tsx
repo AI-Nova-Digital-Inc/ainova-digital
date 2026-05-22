@@ -378,7 +378,7 @@ function MovingDemo() {
         </div>
         <div className="text-right">
           <div className="text-white/50 text-[10px]">Starting at</div>
-          <div className="text-red-300 font-bold text-xl">$299</div>
+          <div className="text-red-300 font-bold text-xl">$249</div>
         </div>
       </div>
       <div className="px-6 py-4 flex-1 bg-[#150005]">
