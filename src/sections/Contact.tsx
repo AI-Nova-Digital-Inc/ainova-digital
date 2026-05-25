@@ -71,7 +71,7 @@ export default function Contact() {
                 AI Nova Digital Inc
               </h3>
               <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-                We specialize in building premium, high-converting websites for local blue-collar businesses across North America. No templates. No shortcuts. Just websites that work.
+                We specialize in building premium, high-converting websites for local service businesses across North America. No templates. No shortcuts. Just websites that work.
               </p>
 
               <div className="space-y-5 mb-8">
