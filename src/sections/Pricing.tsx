@@ -187,7 +187,6 @@ export default function Pricing() {
                       <button
                         type="button"
                         onClick={() => setActivePlan(plan)}
-                        onMouseEnter={() => window.matchMedia("(hover: hover)").matches && setActivePlan(plan)}
                         className="group ml-0 sm:ml-1 inline-flex items-center gap-1.5 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-[11px] font-semibold text-cyan-200 shadow-[0_0_18px_rgba(34,211,238,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:text-white hover:shadow-[0_0_26px_rgba(34,211,238,0.25)]"
                         aria-label={`View monthly care details for ${name}`}
                       >
@@ -235,7 +234,7 @@ export default function Pricing() {
 
         {activePlan && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 py-4"
             onClick={() => setActivePlan(null)}
           >
             <motion.div
@@ -252,7 +251,7 @@ export default function Pricing() {
               role="dialog"
               aria-modal="true"
               aria-labelledby="care-plan-title"
-              className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-cyan-300/20 bg-slate-950/85 p-6 shadow-[0_0_90px_rgba(59,130,246,0.28)] sm:p-8"
+              className="relative max-h-[calc(100vh-2rem)] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-300/20 bg-slate-950/85 p-5 shadow-[0_0_90px_rgba(59,130,246,0.28)] sm:p-6"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
               <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-cyan-400/20 blur-3xl" />
@@ -260,42 +259,45 @@ export default function Pricing() {
 
               <button
                 type="button"
-                onClick={() => setActivePlan(null)}
-                className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:border-cyan-300/40 hover:text-white"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActivePlan(null);
+                }}
+                className="absolute right-4 top-4 z-20 grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-slate-950/70 text-gray-400 shadow-lg transition hover:border-cyan-300/40 hover:text-white"
                 aria-label="Close monthly care details"
               >
                 <X className="h-4 w-4" />
               </button>
 
               <div className="relative">
-                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-xs font-semibold text-cyan-200">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-xs font-semibold text-cyan-200">
                   <ShieldCheck className="h-4 w-4" />
                   {activePlan.name} · {activePlan.monthlyPrice}
                 </div>
 
-                <h3 id="care-plan-title" className="text-3xl font-bold text-white sm:text-4xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <h3 id="care-plan-title" className="pr-10 text-2xl font-bold text-white sm:text-3xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   Monthly Website Care Plan
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-gray-400">
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-400">
                   A premium maintenance layer for businesses that want their website protected, monitored, and kept current after launch.
                 </p>
 
-                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
                   {carePlanFeatures.map((feature) => (
                     <div
                       key={feature}
-                      className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.04] p-3.5 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
+                      className="flex items-start gap-2.5 rounded-xl border border-white/8 bg-white/[0.04] px-3 py-2.5 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
                     >
-                      <div className="mt-0.5 grid h-5 w-5 flex-shrink-0 place-items-center rounded-full bg-emerald-400/15">
+                      <div className="mt-0.5 grid h-4.5 w-4.5 flex-shrink-0 place-items-center rounded-full bg-emerald-400/15">
                         <Check className="h-3 w-3 text-emerald-300" strokeWidth={3} />
                       </div>
-                      <span className="text-sm leading-relaxed text-gray-200">{feature}</span>
+                      <span className="text-[13px] leading-snug text-gray-200">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-7 rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4">
-                  <p className="text-sm leading-relaxed text-blue-100">
+                <div className="mt-5 rounded-2xl border border-blue-400/20 bg-blue-500/10 p-3.5">
+                  <p className="text-[13px] leading-relaxed text-blue-100">
                     We handle the technical maintenance so business owners can stay focused on running their business.
                   </p>
                   <p className="mt-2 text-xs font-medium text-cyan-300">Cancel anytime. No long-term maintenance contract required.</p>
