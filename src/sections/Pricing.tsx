@@ -5,8 +5,7 @@ import { Check, Info, ShieldCheck, Sparkles, X } from "lucide-react";
 const plans = [
   {
     name: "Starter Website",
-    oldPrice: "$299",
-    price: "$249",
+    price: "$149",
     monthlyPrice: "$29/mo",
     priceNote: "starting from",
     badge: null,
@@ -27,8 +26,7 @@ const plans = [
   },
   {
     name: "Business Website",
-    oldPrice: "$499",
-    price: "$349",
+    price: "$299",
     monthlyPrice: "$49/mo",
     priceNote: "starting from",
     badge: "Most Requested",
@@ -50,7 +48,6 @@ const plans = [
   },
   {
     name: "Premium Website / Web App",
-    oldPrice: "$699",
     price: "$499",
     monthlyPrice: "$69/mo",
     priceNote: "starting from",
@@ -126,7 +123,7 @@ export default function Pricing() {
         {/* Cards */}
         <div className="grid lg:grid-cols-3 gap-6 items-start">
           {plans.map((plan, i) => {
-            const { name, oldPrice, price, monthlyPrice, priceNote, badge, description, features, cta, ctaStyle, highlighted, glow } = plan;
+            const { name, price, monthlyPrice, priceNote, badge, description, features, cta, ctaStyle, highlighted, glow } = plan;
 
             return (
             <motion.div
@@ -172,12 +169,6 @@ export default function Pricing() {
                   <div className="mb-3">
                     <div className="flex flex-wrap items-end gap-2">
                       <span className="text-xs text-gray-500 pb-1.5">{priceNote}</span>
-                      <span
-                        className="text-2xl font-bold text-gray-500 line-through decoration-red-500 decoration-2 pb-0.5"
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                      >
-                        {oldPrice}
-                      </span>
                       <span
                         className="text-4xl font-bold gradient-text"
                         style={{ fontFamily: "'Space Grotesk', sans-serif" }}
